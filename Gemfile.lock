@@ -75,7 +75,7 @@ GEM
       has_scope (~> 0.5.0)
       responders (~> 0.6)
     journey (1.0.3)
-    json (1.7.1)
+    json (1.4.6)
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -223,6 +223,7 @@ DEPENDENCIES
   hoptoad_notifier (~> 2.4)
   htmlentities (~> 4.3.0)
   inherited_resources
+  json (~> 1.4.6)
   kaminari
   launchy
   lighthouse-api
