@@ -224,6 +224,8 @@ a.action  { float: right; font-size: 0.9em;}
   padding-left: 47px;
 }
 
+#action-bar span.github a { background: url(images/icons/github.png) no-repeat 6px 5px; }
+
 
 /* Content */
 #content {
