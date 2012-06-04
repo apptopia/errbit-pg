@@ -14,6 +14,11 @@ unless defined?(Errbit::Config)
     Errbit::Config.user_has_username = ENV['ERRBIT_USER_HAS_USERNAME']
     Errbit::Config.allow_comments_with_issue_tracker = ENV['ERRBIT_ALLOW_COMMENTS_WITH_ISSUE_TRACKER']
 
+    Errbit::Config.github_authentication = ENV['GITHUB_AUTHENTICATION']
+    Errbit::Config.github_client_id = ENV['GITHUB_CLIENT_ID']
+    Errbit::Config.github_secret = ENV['GITHUB_SECRET']
+    Errbit::Config.github_access_scope = ENV['GITHUB_ACCESS_SCOPE'].split(',').map(&:strip) if ENV['GITHUB_ACCESS_SCOPE']
+
     Errbit::Config.smtp_settings = {
       :address        => "smtp.sendgrid.net",
       :port           => "25",
