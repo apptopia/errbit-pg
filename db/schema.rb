@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(:version => 20130109095218) do
   create_table "backtrace_lines", :force => true do |t|
     t.integer  "backtrace_id"
     t.integer  "number"
-    t.string   "file"
-    t.string   "method"
+    t.text     "file"
+    t.text     "method"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -106,11 +106,12 @@ ActiveRecord::Schema.define(:version => 20130109095218) do
   create_table "notices", :force => true do |t|
     t.integer  "err_id"
     t.integer  "backtrace_id"
-    t.string   "message"
+    t.text     "message"
     t.text     "server_environment"
     t.text     "request"
     t.text     "notifier"
     t.text     "user_attributes"
+    t.string   "framework"
     t.text     "current_user"
     t.string   "error_class"
     t.datetime "created_at",         :null => false
@@ -123,6 +124,9 @@ ActiveRecord::Schema.define(:version => 20130109095218) do
   create_table "notification_services", :force => true do |t|
     t.integer  "app_id"
     t.string   "room_id"
+    t.string   "user_id"
+    t.string   "service_url"
+    t.string   "service"
     t.string   "api_token"
     t.string   "subdomain"
     t.string   "sender_name"
@@ -145,9 +149,9 @@ ActiveRecord::Schema.define(:version => 20130109095218) do
     t.string   "app_name"
     t.integer  "notices_count"
     t.integer  "comments_count"
-    t.string   "message"
+    t.text     "message"
     t.string   "environment"
-    t.string   "error_class"
+    t.text     "error_class"
     t.string   "where"
     t.text     "user_agents"
     t.text     "messages"

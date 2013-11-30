@@ -215,11 +215,11 @@ module DataMigration
 
       copy_users
       copy_apps
-      copy_problems
-      copy_comments
-      copy_errs
-      copy_backtraces
-      copy_notices
+      # copy_problems
+      # copy_comments
+      # copy_errs
+      # copy_backtraces
+      # copy_notices
 
       update_states
     end

@@ -79,7 +79,14 @@ group :development, :test do
   end
 #  gem 'rpm_contrib'
 #  gem 'newrelic_rpm'
-  gem 'capistrano'
+#  gem 'capistrano'
+end
+
+group :deployment do
+  gem 'capistrano',         '~> 2.13.5', require: false
+  gem 'capistrano-ext',     '~> 1.2.1', require: false
+  gem 'rvm-capistrano',     '~> 1.2.7', require: false
+  gem 'capistrano-unicorn', git: 'git://github.com/apptopia/capistrano-unicorn.git', require: false
 end
 
 gem 'foreman', :group => :development
@@ -104,7 +111,7 @@ gem 'thin', :group => :development, :platform => :ruby
 # in production environments by default.
 group :assets do
   gem 'execjs'
-  gem 'therubyracer', :platform => :ruby  # C Ruby (MRI) or Rubinius, but NOT Windows
+  gem 'therubyracer', '0.12.0', :platform => :ruby  # C Ruby (MRI) or Rubinius, but NOT Windows
   gem 'uglifier',     '>= 1.0.3'
   gem 'underscore-rails'
   gem 'turbo-sprockets-rails3'
