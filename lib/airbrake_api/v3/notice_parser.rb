@@ -39,7 +39,7 @@ module AirbrakeApi
             method: backtrace_line['function'],
             file:   backtrace_line['file'],
             number: backtrace_line['line'],
-            column: backtrace_line['column']
+            #column: backtrace_line['column']
           }
         end
       end
@@ -76,7 +76,7 @@ module AirbrakeApi
           'name'     => context['userName'],
           'email'    => context['userEmail'],
           'username' => context['userUsername']
-        }.compact
+        }.reject {|k,v| v.nil?}
       end
 
       def url

@@ -201,6 +201,16 @@ class Problem < ActiveRecord::Base
     self.update_attribute(attr, self.send(attr) + increment_by)
   end
 
+  def url
+    Rails.application.routes.url_helpers.app_problem_url(
+      app,
+      self,
+      protocol: Errbit::Config.protocol,
+      host:     Errbit::Config.host,
+      port:     Errbit::Config.port
+    )
+  end
+
   private
     def attribute_count_increase(name, value)
       counter, index = send(name), attribute_index(value)

@@ -2,8 +2,8 @@ class Api::V3::NoticesController < ApplicationController
   VERSION_TOO_OLD = 'Notice for old app version ignored'.freeze
   UNKNOWN_API_KEY = 'Your API key is unknown'.freeze
 
-  skip_before_action :verify_authenticity_token
-  skip_before_action :authenticate_user!
+  skip_before_filter :verify_authenticity_token
+  skip_before_filter :authenticate_user!
 
   respond_to :json
 
@@ -16,7 +16,6 @@ class Api::V3::NoticesController < ApplicationController
       params.merge(JSON.parse(request.raw_post) || {})).report
 
     return render text: UNKNOWN_API_KEY, status: 422 unless report.valid?
-    return render text: VERSION_TOO_OLD, status: 422 unless report.should_keep?
 
     report.generate_notice!
     render status: 201, json: {
