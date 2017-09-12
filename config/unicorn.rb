@@ -1,11 +1,11 @@
 # http://michaelvanrooijen.com/articles/2011/06/01-more-concurrency-on-a-single-heroku-dyno-with-the-new-celadon-cedar-stack/
-app_path = File.expand_path("../../..", __FILE__)
+app_path = File.expand_path("../..", __FILE__)
 
 worker_processes 3 # amount of unicorn workers to spin up
 timeout 30         # restarts workers that hang for 30 seconds
 preload_app true
-listen            "#{app_path}/shared/sockets/unicorn.sock", :backlog => 2048
-pid               "#{app_path}/shared/pids/unicorn.pid"
+listen            "#{app_path}/tmp/sockets/unicorn.sock", :backlog => 2048
+pid               "#{app_path}/tmp/pids/unicorn.pid"
 stderr_path       "log/unicorn.log"
 stdout_path       "log/unicorn.log"
 user              'ubuntu', 'ubuntu'
@@ -14,6 +14,8 @@ user              'ubuntu', 'ubuntu'
 # Taken from github: https://github.com/blog/517-unicorn
 # Though everyone uses pretty miuch the same code
 before_fork do |server, worker|
+  ActiveRecord::Base.connection.disconnect!
+
   ##
   # When sent a USR2, Unicorn will suffix its pidfile with .oldbin and
   # immediately start loading up a new version of itself (loaded with a new
@@ -33,4 +35,8 @@ before_fork do |server, worker|
       # someone else did our job for us
     end
   end
+end
+
+after_fork do |server, worker|
+  ActiveRecord::Base.establish_connection
 end
