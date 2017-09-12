@@ -40,6 +40,9 @@ Errbit::Application.routes.draw do
     resources :watchers, :only => [:destroy]
   end
 
+  match '/api/v3/projects/:project_id/create-notice' => 'api/v3/notices#create', via: [:post]
+  match '/api/v3/projects/:project_id/notices' => 'api/v3/notices#create', via: [:post, :options]
+
   root :to => 'apps#index'
 
 end
